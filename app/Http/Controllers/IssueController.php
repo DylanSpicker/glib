@@ -86,6 +86,8 @@ class IssueController extends Controller
     {
         $issue = Issue::find($id);
         
+        if(!$issue) \App::abort('404');
+
         return view('issue')->with('issue', $issue);
     }
 
@@ -122,6 +124,11 @@ class IssueController extends Controller
     {
         $issue = Issue::find($id);
         
+        if(! $issue) {
+            Session::flash("message", "That essay does not exist.");
+            return redirect('user/profile');
+        }
+
         if($issue->user_id == Auth::user()->id){
             foreach($issue->comments() AS $comment){
                 foreach($comment->replies() AS $reply){

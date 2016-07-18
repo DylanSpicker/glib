@@ -81,6 +81,8 @@ class ArgumentController extends Controller
     {
         $argument = Argument::find($id);
         
+        if(!$argument) \App::abort('404');
+
         return view('argument')->with('argument', $argument);
     }
 
@@ -117,6 +119,11 @@ class ArgumentController extends Controller
     {
         $argument = Argument::find($id);
         
+        if(!$argument){
+            Session::flash("message", "That essay could not be found.");
+            return redirect('user/profile');
+        }
+
         if($argument->user_id == Auth::user()->id){
             foreach($argument->comments() AS $comment){
                 foreach($comment->replies() AS $reply){
