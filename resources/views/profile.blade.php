@@ -57,9 +57,11 @@
                                         </a>
                                         <span class="clearfix"></span>
                                         
-                                        {{ Form::open(['class' => 'delete_button', 'method' => 'delete', 'url' => 'issue/'.$issue->id]) }}
-                                            <button class='btn btn-danger'><i class='fa fa-btn fa-times'></i></button>
-                                        {{ Form::close() }}
+                                        @if(Auth::id() == $user->id)
+                                            {{ Form::open(['class' => 'delete_button', 'method' => 'delete', 'url' => 'issue/'.$issue->id]) }}
+                                                <button title="Delete Essay?" class='btn btn-danger'><i class='fa fa-btn fa-times'></i></button>
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
                                 @endforeach
                                 {{  $issues->appends(['arguments' => $_GET["arguments"]])->links() }}
@@ -85,10 +87,11 @@
                                             View Other Responses
                                         </a>
                                         <span class="clearfix"></span>
-                                        
-                                        {{ Form::open(['class' => 'delete_button', 'method' => 'delete', 'url' => 'argument/'.$argument->id]) }}
-                                            <button class='btn btn-danger'><i class='fa fa-btn fa-times'></i></button>
-                                        {{ Form::close() }}
+                                        @if(Auth::id() == $user->id)
+                                            {{ Form::open(['class' => 'delete_button', 'method' => 'delete', 'url' => 'argument/'.$argument->id]) }}
+                                                <button title="Delete Essay?" class='btn btn-danger'><i class='fa fa-btn fa-times'></i></button>
+                                            {{ Form::close() }}
+                                        @endif
                                     </div>
                                 @endforeach
                                 {{  $arguments->appends(['issues' => $_GET['issues']])->links() }}
