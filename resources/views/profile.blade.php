@@ -37,10 +37,10 @@
                     <div class="panel-heading">{{ $user->name }}'s Profile</div>
 
                     <div class="panel-body">
-                        <h2>{{ (Auth::id() === $user->id) ? "Your" : $user->name."'s" }} Issue Essay{{ ($issues->count() > 1) ? "s" : "" }} </h2>
+                        <h2>{{ (Auth::id() == $user->id) ? "Your" : $user->name."'s" }} Issue Essay{{ ($issues->count() > 1) ? "s" : "" }} </h2>
                         <div class="list-group">
                             @if($issues->count() <= 0)
-                                @if(Auth::id() === $user->id)
+                                @if(Auth::id() == $user->id)
                                     <p>You have not currently written any issue essays... <a href='{{ route("issue.index") }}'>Write one today!</a></p>
                                 @else
                                     <p>{{ $user->name }} has not written any issue essays.</p>
@@ -66,10 +66,10 @@
                             @endif
                         </div>
 
-                        <h2>{{ (Auth::id() === $user->id) ? "Your" : $user->name."'s" }} Argument Essay{{ ($arguments->count() > 1) ? "s" : "" }} </h2>
+                        <h2>{{ (Auth::id() == $user->id) ? "Your" : $user->name."'s" }} Argument Essay{{ ($arguments->count() > 1) ? "s" : "" }} </h2>
                         <div class="list-group">
                             @if($arguments->count() <= 0)
-                                @if(Auth::id() === $user->id)
+                                @if(Auth::id() == $user->id)
                                     <p>You have not currently written any argument essays... <a href='{{ route("argument.index") }}'>Write one today!</a></p>
                                 @else
                                     <p>{{ $user->name }} has not written any argument essays.</p>

@@ -57,7 +57,7 @@ class TopicController extends Controller
         // Show a single topic, and then all of the responses to that topic that have been generated to date
         $topic_details = Topics::find($id);
 
-        if($topic_details->type !== 0){
+        if($topic_details->type != 0){
             $user_submissions = Argument::where("question_id", $id)->paginate(15);
         }else{
             $user_submissions = Issue::where("question_id", $id)->paginate(15);

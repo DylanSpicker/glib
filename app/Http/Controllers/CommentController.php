@@ -39,7 +39,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        if(!isset($request->_parent_type) || empty($request->_parent_id) || empty($request->_checksum) || md5("".$request->_parent_type."_GLIB_RULES_".$request->_parent_id) !== $request->_checksum){
+        if(!isset($request->_parent_type) || empty($request->_parent_id) || empty($request->_checksum) || md5("".$request->_parent_type."_GLIB_RULES_".$request->_parent_id) != $request->_checksum){
             return back()->withInput()->withErrors(["Do not alter that. Uncool dude..."]);
         }
 
@@ -104,7 +104,7 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
 
-        if(Auth::user()->id === $comment->user_id){
+        if(Auth::user()->id == $comment->user_id){
 
             foreach($comment->replies() AS $reply){
                 $reply->delete();
@@ -131,18 +131,18 @@ class CommentController extends Controller
         $rating     = (int)$rating;
         // Look for whether the user has rated
         // If so: if "$user_rated->rating == $rating" => Return
-        // Otherwise: if "$user_rated->rating !== $rating" => Update $user_rated->rating; subtract 1 from current; add to other
+        // Otherwise: if "$user_rated->rating != $rating" => Update $user_rated->rating; subtract 1 from current; add to other
         // Else, add rating
         if($user_rated->count()){
-            if($user_rated->first()->rating === $rating) return back();
+            if($user_rated->first()->rating == $rating) return back();
             $user_rated = $user_rated->first();
             $user_rated->rating = $rating;
 
-            if($rating === 0){
+            if($rating == 0){
                 $comment->likes += 1;
                 $comment->dislikes -= 1;
                 if($comment->dislikes < 0) $comment->dislikes = 0;
-            }else if($rating === 1){
+            }else if($rating == 1){
                 $comment->likes -= 1;
                 $comment->dislikes += 1;
                 if($comment->likes < 0) $comment->likes = 0;
@@ -155,9 +155,9 @@ class CommentController extends Controller
             $user_rated->user_id    = $user_id;
             $user_rated->comment_id = $id; 
 
-            if($rating === 0){
+            if($rating == 0){
                 $comment->likes += 1;
-            }else if($rating === 1){
+            }else if($rating == 1){
                 $comment->dislikes += 1;
             }else{
                 return back();

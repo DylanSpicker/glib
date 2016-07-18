@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    @if($topic_details->type !== 0)
+    @if($topic_details->type != 0)
         <h4>GRE Argument Topic</h4>
     @else
         <h4>GRE Issue Topic</h4>
@@ -20,7 +20,7 @@
             <div class="user_submission">
                 <p>Written by <a href='{{ url("user/profile/".$story->user->id) }}'>{{ $story->user->name }}</a></p>
                 <p class='well'>{{ str_limit($story->body, 250) }} </p>
-                <a class='more' href='{{ ($story->question->type === 0) ? url("issue/".$story->id) : url("argument/".$story->id) }}'>Read More</a>
+                <a class='more' href='{{ ($story->question->type == 0) ? url("issue/".$story->id) : url("argument/".$story->id) }}'>Read More</a>
             </div>
         @endforeach
     </div>

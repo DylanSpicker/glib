@@ -117,7 +117,7 @@ class ArgumentController extends Controller
     {
         $argument = Argument::find($id);
         
-        if($argument->user_id === Auth::user()->id){
+        if($argument->user_id == Auth::user()->id){
             foreach($argument->comments() AS $comment){
                 foreach($comment->replies() AS $reply){
                     $reply->delete();

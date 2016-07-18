@@ -122,7 +122,7 @@ class IssueController extends Controller
     {
         $issue = Issue::find($id);
         
-        if($issue->user_id === Auth::user()->id){
+        if($issue->user_id == Auth::user()->id){
             foreach($issue->comments() AS $comment){
                 foreach($comment->replies() AS $reply){
                     $reply->delete();
