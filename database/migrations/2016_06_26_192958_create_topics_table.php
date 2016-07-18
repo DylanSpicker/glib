@@ -19,20 +19,6 @@ class CreateTopicsTable extends Migration
             $table->string('instructions', 1000);
             $table->timestamps();
         });
-
-        $file = base_path('data/Argument.csv');
-
-        $query = "LOAD DATA LOCAL INFILE '" . $file . "'
-                    INTO TABLE topics
-                    FIELDS TERMINATED BY '||'
-                    LINES STARTING BY 'XXXXXXX '
-                        (`type`, 
-                        `question-text`, 
-                        `instructions`,
-                        @created_at,
-                        @updated_at)
-                SET created_at=NOW(),updated_at=null";
-        DB::connection()->getpdo()->exec($query);
     }
 
     /**
