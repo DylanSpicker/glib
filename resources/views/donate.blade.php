@@ -10,7 +10,7 @@
             I very much appreciate the fact that as a student money is often hard to come by. Further, resources tend to cost a lot while studying for the GRE as is. That is why I hope to keep Glib free and open for any (and every-) one to use. I just ask that if you have something to give, and have found Glib to be a useful resource in your GRE prep, to do so. Thank you very much! 
         </p>
         <p>
-            If you have any questions, comments, or concerns, please feel free to reach me at <a href="mailto:dylan.spicker@gmail.com">dylan.spicker@gmail.com</a>. I am always happy to hear from everyone!
+            If you have any questions, comments, or concerns, please feel free to reach me at <a href="mailto:getglib@gmail.com">getglib@gmail.com</a>. I am always happy to hear from everyone!
         </p>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
